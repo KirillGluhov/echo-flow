@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
-import MainPart from './MainPart.jsx';
+import MainPage from './components/MainPage.jsx';
+import "../src/styles/style.css"
 
 const root = createRoot(document.getElementById('root'));
-root.render(<MainPart />);
+root.render(<MainPage />);

@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, session } = require('electron');
 const path = require('node:path');
 
 
@@ -9,10 +9,10 @@ if (require('electron-squirrel-startup')) {
 const createWindow = () => {
 
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1000,
+    height: 800,
     webPreferences: {
-      preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
+      preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY
     },
   });
 
@@ -22,6 +22,15 @@ const createWindow = () => {
 
 
 app.whenReady().then(() => {
+  session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
+    callback({
+      responseHeaders: {
+        ...details.responseHeaders,
+        'Content-Security-Policy': ['*']
+      }
+    })
+  })
+  
   createWindow();
 
   app.on('activate', () => {
