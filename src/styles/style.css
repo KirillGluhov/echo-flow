@@ -12,7 +12,8 @@
 body
 {
     margin: 0;
-    min-width: 650px;
+    min-width: 900px;
+    font-family: 'Allerta';
 }
 
 p
@@ -63,23 +64,454 @@ p
     margin-right: 10px;
 }
 
-searchicon
+.chooseFolders
 {
-    width: 50px;
-    height: 50px;
+    cursor: pointer;
 }
 
-.findSong
+.middlePart
+{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    width: calc(100%-20px);
+    display: flex;
+    flex-direction: column;
+}
+
+.letterCircle
+{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: var(--additional-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.letterCircle > p
+{
+    font-size: 40px;
+}
+
+.firstLetter
 {
     width: 100%;
-    height: 20px;
 }
 
 .musicCard
 {
-    display: flex;
+    width: calc(100%-20px);
+    border-radius: 25px;
+    background-color: red;
     height: 100px;
-    width: 500px;
-    background-color: var(--main-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.musicCard, .firstLetter
+{
+    margin-bottom: 10px;
+}
+
+.musicCardInner
+{
+    height: 100px;
+    width: calc(100% - 20px);
+    display: flex;
+}
+
+.photoPart
+{
+    background-color: var(--additional-color);
+    border-radius: 5px;
+}
+
+.photoPart
+{
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.musicMainData, .musicSecondData
+{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-radius: 5px;
+}
+
+.musicMainData
+{
+    width: 50%;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.musicSecondData
+{
+    width: 50%;
+    margin-right: 10px;
+}
+
+.cover
+{
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.oneSectionOfMusicData
+{
+    width: 100%;
+    height: 30px;
+    background-color: var(--additional-color);
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.musicSecondData .oneSectionOfMusicData:first-child, .musicMainData .oneSectionOfMusicData:first-child
+{
+    border-radius: 5px 5px 0px 0px;
+}
+
+.musicSecondData .oneSectionOfMusicData:last-child, .musicMainData .oneSectionOfMusicData:last-child
+{
+    border-radius: 0px 0px 5px 5px;
+}
+
+.photoPart > p
+{
+    width: 100px;
+    text-align: center;
+}
+
+.wrapperMusicData
+{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.musicCardInnerPart
+{
+    width: 100%;
+    height: 100%;
+    display: flex;
     cursor: pointer;
+}
+
+.photoPartOfMusicCard
+{
+    width: 100px;
+    height: 100%;
+    background-color: var(--additional-color);
+    object-fit: cover;
+    border-radius: 5px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.anotherPartOfMusicCard
+{
+    flex-grow: 1;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.musicCardFirstPartInside
+{
+    width: 50%;
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+}
+
+.musicCardSecondPartInside
+{
+    width: 50%;
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+}
+
+.onePartOfMusicCard
+{
+    width: 100%;
+    height: 30px;
+    background-color: var(--additional-color);
+    text-wrap: nowrap;
+    display: flex;
+    align-items: center;
+}
+
+.musicCardSecondPartInside .onePartOfMusicCard:last-child
+{
+    border-radius: 0px 0px 5px 5px;
+}
+
+.musicCardFirstPartInside .onePartOfMusicCard:last-child
+{
+    border-radius: 0px 0px 5px 5px;
+}
+
+.musicCardSecondPartInside .onePartOfMusicCard:first-child
+{
+    border-radius: 5px 5px 0px 0px;
+}
+
+.musicCardFirstPartInside .onePartOfMusicCard:first-child
+{
+    border-radius: 5px 5px 0px 0px;
+}
+
+.onePartOfMusicCard > p
+{
+    margin-left: 5px;
+    text-overflow: ellipsis;
+    
+    overflow: hidden;
+}
+
+.player
+{
+    height: 100px;
+    width: 100%;
+    background-color: var(--main-color);
+    position: fixed;
+    bottom: 0;
+}
+
+@media screen and (max-width: 950px)
+{
+    .player
+    {
+        width: 950px;
+    }
+}
+
+.sideOfPlayer
+{
+    
+    height: 100%;
+    width: 350px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+}
+
+.mainControlsOfPlayer
+{
+    height: 80%;
+    width: 200px;
+    background-color: var(--additional-color);
+    border-radius: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.playerInner
+{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 950px;
+}
+
+.pauseButton, .playButton
+{
+    cursor: pointer;
+}
+
+.playerPhoto
+{
+    width: 80px;
+    height: 80%;
+    background-color: var(--additional-color);
+    margin-left: 10px;
+    object-fit: cover;
+    border-radius: 5px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.playerMainInfo
+{
+    height: 80%;
+    width: 150px;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.playerInfo
+{
+    width: 100%;
+    height: 35px;
+    background-color: var(--additional-color);
+    text-wrap: nowrap;
+    display: flex;
+    align-items: center;
+    background-color: var(--additional-color);
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.playerMainInfo .playerInfo:first-child
+{
+    border-radius: 5px 5px 0px 0px;
+}
+
+.playerMainInfo .playerInfo:last-child
+{
+    border-radius: 0px 0px 5px 5px;
+}
+
+.playerInfoInner
+{
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.playerInfoInner > p
+{
+    margin-left: 5px;
+    display: inline-block;
+    animation: scroll-right 10s linear infinite;
+}
+
+.middlePart .musicCard:last-child
+{
+    margin-bottom: 110px;
+}
+
+@keyframes scroll-right
+{
+    0%
+    {
+        transform: translateX(50%);
+    }
+    100%
+    {
+        transform: translateX(-100%);
+    }
+}
+
+.wrapperForRange
+{
+    height: 80%;
+    width: 240px;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.currentTime
+{
+    width: 80px;
+    height: 80%;
+    background-color: var(--additional-color);
+    margin-right: 10px;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.currentTime > p
+{
+    font-size: 20px;
+}
+
+.sideOfPlayerSecond
+{
+    
+    height: 100%;
+    width: 350px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+.slider
+{
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 5px;
+    background-color: black;
+}
+
+.slider::-webkit-slider-runnable-track
+{
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 5px;
+    cursor: pointer;
+    background: black;
+}
+
+.slider::-moz-range-track
+{
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 10px;
+    cursor: pointer;
+    background: black;
+}
+
+.slider::-webkit-slider-thumb
+{
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: var(--additional-color);
+    cursor: pointer;
+    margin-top: -2.5px;
+}
+
+.slider::-moz-range-thumb
+{
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: var(--additional-color);
+    cursor: pointer;
+    margin-top: -2.5px;
 }

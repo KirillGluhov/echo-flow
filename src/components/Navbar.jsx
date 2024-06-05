@@ -1,19 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ReactComponent as searchIcon} from '../icons/search.svg';
+import ChooseFolders from './ChooseFolders.jsx';
 
-function Navbar()
+function Navbar({ onFilesChange })
 {
     return (
         <div className='navbar'>
             <div className='songs'>
                 <p>Songs</p>
             </div>
-            <div className='chooseFolders'>
-                <p>Choose folders</p>
-            </div>
+            <ChooseFolders onFilesChange={onFilesChange}/>
             <div className='search'>
-                {/*<searchIcon/>*/}
-                <input className='findSong'></input>
+                
             </div>
             <div className='albums'>
                 <p>Albums</p>
