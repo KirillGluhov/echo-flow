@@ -11,7 +11,7 @@ function MiddlePart({files})
             Array.from(files).map((file, index) => (
                 <CardMusic 
                 file={file} 
-                key={index} 
+                index={index}
                 />
             ))
         }

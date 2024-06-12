@@ -23,3 +23,9 @@ export function getUniqueLetters(files)
     })
     return Array.from(uniqueLetters).sort();
 }
+
+export function thisSong(metaData, fileName, searchString)
+{
+    const title = metaData.hasOwnProperty('title') ? metaData.title : fileName.split('.').slice(0, -1).join('.');
+    return title.toLowerCase().includes(searchString.toLowerCase());
+}

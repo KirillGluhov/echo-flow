@@ -3,6 +3,7 @@ import Navbar from './Navbar.jsx';
 import Player from './Player.jsx';
 import MiddlePart from './MiddlePart.jsx';
 import { AudioProvider } from '../contexts/AudioContext.jsx';
+import { SearchProvider } from '../contexts/SearchContext.jsx';
 
 function MainPage() 
 {
@@ -13,11 +14,13 @@ function MainPage()
     };
 
     return (<>
-    <AudioProvider>
-        <Navbar onFilesChange={handleFilesChange}/>
-        <MiddlePart files={files}/>
-        <Player/>
-    </AudioProvider>
+    <SearchProvider>
+        <AudioProvider>
+            <Navbar onFilesChange={handleFilesChange}/>
+            <MiddlePart files={files}/>
+            <Player/>
+        </AudioProvider>
+    </SearchProvider>
     </>);
 }
 

@@ -4,22 +4,30 @@ import process from 'process';
 import { useAudio } from '../contexts/AudioContext.jsx';
 const musicMetadata = require('music-metadata-browser');
 import { toMinute } from '../functions/smallFunctions.js';
+import { useSearch } from '../contexts/SearchContext.jsx';
+import { thisSong } from '../functions/smallFunctions.js';
 
 window.Buffer = Buffer;
 window.process = process;
 
-function CardMusic({file, key})
+function CardMusic({file, index})
 {
     const [allmetadata, setMetadata] = useState(null)
     const [coverUrl, setCoverUrl] = useState(null);
     const audioRef = useRef(null);
+
+    const {searchString, setSearchString} = useSearch();
 
     const {
         currentAudio, setCurrentAudio, 
         metadataCurrent, setMetadataCurrent, 
         playNow, setPlayNow,
         currentPhoto, setCurrentPhoto,
-        filename, setFilename
+        filename, setFilename,
+        currentIndex, setCurrentIndex,
+        shuffle, setShuffle,
+
+        audioData, addAudioData, clearAudioData
     } = useAudio();
 
     const handlePlayPause = () => {
@@ -44,24 +52,39 @@ function CardMusic({file, key})
 
             audioRef.current.play();
 
+            setCurrentIndex(index);
+            
             setFilename(file.name);
             setCurrentAudio(audioRef.current);
             setCurrentPhoto(coverUrl)
             setMetadataCurrent(allmetadata);
             setPlayNow(true);
+            //
+            console.log(audioData)
+            //
         }
     };
 
     useEffect(() => {
+
         musicMetadata.parseBlob(file).then(metadata => {
-            setMetadata(metadata)
-            console.log(metadata)
+            setMetadata(metadata);
+            let cover = null;
+
             if (metadata.common.picture && metadata.common.picture.length > 0) {
                 const picture = metadata.common.picture[0];
                 const blob = new Blob([picture.data], { type: picture.format });
-                const url = URL.createObjectURL(blob);
-                setCoverUrl(url);
+                cover = URL.createObjectURL(blob);
+                setCoverUrl(cover);
+                
             }
+
+            addAudioData(index,{
+                metaData: metadata,
+                photo: cover,
+                fileName: file.name,
+                audio: audioRef
+            })
           });
     }, [file])
 
@@ -74,7 +97,7 @@ function CardMusic({file, key})
     }, [currentAudio])
 
     return (<>
-        {allmetadata && <div className='musicCard' key={key} onClick={handlePlayPause}>
+        {allmetadata && <div className='musicCard' key={index} onClick={handlePlayPause} style={{display: `${thisSong(allmetadata.common, file.name, searchString) ? "flex" : "none"}`}}>
              <div className='musicCardInnerPart'>
                 <div className='photoPartOfMusicCard'>
                     {coverUrl != null ? <img src={coverUrl} className='cover'/> : <p>No photo</p>}

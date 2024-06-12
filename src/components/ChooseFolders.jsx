@@ -1,6 +1,15 @@
 import React, { useState } from 'react';
 import { useAudio } from '../contexts/AudioContext.jsx';
 
+/*
+{
+    metadata: //,
+    photo: //,
+    fileName: //,
+    audio: //,
+}
+*/
+
 function ChooseFolders({ onFilesChange })
 {
     const [files, setFiles] = useState([]);
@@ -9,7 +18,10 @@ function ChooseFolders({ onFilesChange })
         metadataCurrent, setMetadataCurrent, 
         playNow, setPlayNow,
         currentPhoto, setCurrentPhoto,
-        filename, setFilename
+        filename, setFilename,
+        currentIndex, setCurrentIndex,
+        shuffle, setShuffle,
+        audioData, addAudioData, clearAudioData
     } = useAudio();
 
     const handleChoose = (event) => {
@@ -31,6 +43,9 @@ function ChooseFolders({ onFilesChange })
         setPlayNow(false);
         setCurrentPhoto(null);
         setFilename(null);
+        setCurrentIndex(null);
+        setShuffle(false);
+        clearAudioData();
 
         document.getElementById('fileURL').click();
     };
