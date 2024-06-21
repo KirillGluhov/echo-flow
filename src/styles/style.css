@@ -566,3 +566,8 @@ p
     height: 100%;
     cursor: pointer;
 }
+
+.onHoverCursor:hover
+{
+    cursor: pointer;
+}

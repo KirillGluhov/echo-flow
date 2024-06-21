@@ -1,10 +1,13 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import CardMusic from './CardMusic.jsx';
 import LetterCircle from './LetterCircle.jsx';
+import { useAlbum } from '../contexts/AlbumContext.jsx';
 
 
 function MiddlePart({files})
 {
+    const {isAlbum, setAlbum} = useAlbum();
+
     return (
         <div className='middlePart'>
         {

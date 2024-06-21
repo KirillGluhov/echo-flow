@@ -6,6 +6,7 @@ const musicMetadata = require('music-metadata-browser');
 import { toMinute } from '../functions/smallFunctions.js';
 import { useSearch } from '../contexts/SearchContext.jsx';
 import { thisSong } from '../functions/smallFunctions.js';
+import { useMusic } from '../contexts/MusicContext.jsx';
 
 window.Buffer = Buffer;
 window.process = process;
@@ -15,6 +16,8 @@ function CardMusic({file, index})
     const [allmetadata, setMetadata] = useState(null)
     const [coverUrl, setCoverUrl] = useState(null);
     const audioRef = useRef(null);
+
+    const {audioData, addAudioData, clearAudioData} = useMusic();
 
     const {searchString, setSearchString} = useSearch();
 
@@ -26,8 +29,6 @@ function CardMusic({file, index})
         filename, setFilename,
         currentIndex, setCurrentIndex,
         shuffle, setShuffle,
-
-        audioData, addAudioData, clearAudioData
     } = useAudio();
 
     const handlePlayPause = () => {
@@ -76,7 +77,6 @@ function CardMusic({file, index})
                 const blob = new Blob([picture.data], { type: picture.format });
                 cover = URL.createObjectURL(blob);
                 setCoverUrl(cover);
-                
             }
 
             addAudioData(index,{
@@ -97,7 +97,17 @@ function CardMusic({file, index})
     }, [currentAudio])
 
     return (<>
-        {allmetadata && <div className='musicCard' key={index} onClick={handlePlayPause} style={{display: `${thisSong(allmetadata.common, file.name, searchString) ? "flex" : "none"}`}}>
+        {allmetadata && 
+        <div className='musicCard' 
+            key={index} 
+            onClick={handlePlayPause} 
+            style={
+                {
+                    display: `${thisSong(allmetadata.common, file.name, searchString) ? "flex" : "none"}`,
+                    color: `${(currentAudio && currentAudio === audioRef.current) ? "white" : "black"}`
+                }
+            }
+        >
              <div className='musicCardInnerPart'>
                 <div className='photoPartOfMusicCard'>
                     {coverUrl != null ? <img src={coverUrl} className='cover'/> : <p>No photo</p>}

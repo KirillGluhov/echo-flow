@@ -22,8 +22,6 @@ export const AudioProvider = ({children}) => {
     const [currentIndex, setCurrentIndex] = useState(null);
     const [shuffle, setShuffle] = useState(false);
 
-    const [audioData, addAudioData, clearAudioData] = useAudioData([]);
-
     return (
         <AudionContext.Provider value={
             {
@@ -33,8 +31,7 @@ export const AudioProvider = ({children}) => {
                 currentPhoto, setCurrentPhoto,
                 filename, setFilename,
                 currentIndex, setCurrentIndex,
-                shuffle, setShuffle,
-                audioData, addAudioData, clearAudioData
+                shuffle, setShuffle
             }
         }>
             {children}

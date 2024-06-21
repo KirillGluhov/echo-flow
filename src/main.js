@@ -1,4 +1,4 @@
-const { app, BrowserWindow, session } = require('electron');
+const { app, BrowserWindow, session, Menu } = require('electron');
 const path = require('node:path');
 
 
@@ -12,6 +12,7 @@ const createWindow = () => {
     width: 1000,
     height: 800,
     resizable: false,
+    icon: __dirname + 'assets/icon.ico',
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY
     },
@@ -19,6 +20,8 @@ const createWindow = () => {
 
 
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
+
+  Menu.setApplicationMenu(null);
 };
 
 

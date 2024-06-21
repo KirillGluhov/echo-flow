@@ -5,6 +5,7 @@ import PreviuosButton from './PreviuosButton.jsx';
 import NextButton from './NextButton.jsx';
 import { toMinute } from '../functions/smallFunctions.js';
 import ShuffleOrNotButton from './ShuffleOrNotButton.jsx';
+import { useMusic } from '../contexts/MusicContext.jsx';
 
 /*
 {
@@ -17,6 +18,8 @@ import ShuffleOrNotButton from './ShuffleOrNotButton.jsx';
 
 function Player()
 {
+    const {audioData, addAudioData, clearAudioData} = useMusic();
+
     const {
         currentAudio, setCurrentAudio, // текущее аудио -
         metadataCurrent, setMetadataCurrent, // метаданные текущего трека !
@@ -25,8 +28,6 @@ function Player()
         filename, setFilename, // название текущего файла !
         currentIndex, setCurrentIndex, // изменение текущего индекса (среди всех) +
         shuffle, setShuffle, // режим воспроизведения (последовательно или случайно) +
-        
-        audioData, addAudioData, clearAudioData
     } = useAudio();
 
     const [currentTime, setCurrentTime] = useState(0);
